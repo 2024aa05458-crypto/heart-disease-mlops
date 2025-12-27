@@ -1,0 +1,14 @@
+artifact_uri: file:c:\MLOPS\heart-disease-mlops\mlruns/754890393248291025/c2c17d3dc1304cfd9a77e5bdc6531465/artifacts
+end_time: 1766864275144
+entry_point_name: ''
+experiment_id: '754890393248291025'
+lifecycle_stage: active
+run_id: c2c17d3dc1304cfd9a77e5bdc6531465
+run_name: Logistic_Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766864269137
+status: 3
+tags: []
+user_id: Raghav

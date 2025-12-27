@@ -1,0 +1,14 @@
+artifact_uri: file:c:\MLOPS\heart-disease-mlops\mlruns/754890393248291025/8d1e7d7e1c3d46d39cdfa895562a7a92/artifacts
+end_time: 1766864279934
+entry_point_name: ''
+experiment_id: '754890393248291025'
+lifecycle_stage: active
+run_id: 8d1e7d7e1c3d46d39cdfa895562a7a92
+run_name: Random_Forest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766864275151
+status: 3
+tags: []
+user_id: Raghav
