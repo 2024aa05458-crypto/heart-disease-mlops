@@ -173,3 +173,13 @@ cv_rf = cross_val_score(rf_pipeline, X, y, cv=5, scoring="roc_auc")
 
 print("\nLogistic Regression CV ROC-AUC:", cv_lr.mean())
 print("Random Forest CV ROC-AUC:", cv_rf.mean())
+
+import joblib
+
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+os.makedirs(MODEL_DIR, exist_ok=True)
+
+MODEL_PATH = os.path.join(MODEL_DIR, "rf_pipeline.joblib")
+joblib.dump(rf_pipeline, MODEL_PATH)
+
+print(f"Model saved at: {MODEL_PATH}")

@@ -1,0 +1,10 @@
+artifact_location: file:c:\MLOPS\heart-disease-mlops\mlruns/754890393248291025/models/m-029d4c0c0e8c4f6bafb76caf8d279179/artifacts
+creation_timestamp: 1766925333317
+experiment_id: '754890393248291025'
+last_updated_timestamp: 1766925337558
+model_id: m-029d4c0c0e8c4f6bafb76caf8d279179
+model_type: null
+name: random_forest_model
+source_run_id: aff7a88e383e43ac8bcf559ebc5f3412
+status: 2
+status_message: null
