@@ -1,12 +1,23 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
 import joblib
 import numpy as np
 import os
 import pandas as pd
+import logging
+import time
 
 # ---------------------------------------------------
-# BASE DIRECTORY (IMPORTANT FIX)
+# LOGGING CONFIGURATION
+# ---------------------------------------------------
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------
+# BASE DIRECTORY
 # ---------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -14,7 +25,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # LOAD MODEL
 # ---------------------------------------------------
 MODEL_PATH = os.path.join(BASE_DIR, "models", "rf_pipeline.joblib")
-
 model = joblib.load(MODEL_PATH)
 
 # ---------------------------------------------------
@@ -25,6 +35,22 @@ app = FastAPI(
     description="Predicts risk of heart disease from patient data",
     version="1.0"
 )
+
+# ---------------------------------------------------
+# REQUEST LOGGING MIDDLEWARE
+# ---------------------------------------------------
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start_time = time.time()
+    response = await call_next(request)
+    process_time = time.time() - start_time
+
+    logger.info(
+        f"{request.method} {request.url.path} "
+        f"Status={response.status_code} "
+        f"Time={process_time:.4f}s"
+    )
+    return response
 
 # ---------------------------------------------------
 # INPUT SCHEMA
@@ -50,7 +76,6 @@ class PatientData(BaseModel):
 # PREDICTION ENDPOINT
 # ---------------------------------------------------
 @app.post("/predict")
-
 def predict(data: PatientData):
 
     input_dict = {
@@ -81,3 +106,9 @@ def predict(data: PatientData):
         "confidence": round(float(probability), 4)
     }
 
+# ---------------------------------------------------
+# HEALTH CHECK ENDPOINT
+# ---------------------------------------------------
+@app.get("/health")
+def health_check():
+    return {"status": "healthy"}
