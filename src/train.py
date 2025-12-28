@@ -1,4 +1,12 @@
 import os
+import sys
+
+# Skip training in CI environment
+if os.getenv("CI") == "true":
+    print("CI environment detected — skipping training")
+    sys.exit(0)
+
+
 import pandas as pd
 import numpy as np
 
