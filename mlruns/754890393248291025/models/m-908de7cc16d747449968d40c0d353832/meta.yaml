@@ -1,0 +1,10 @@
+artifact_location: file:c:\MLOPS\heart-disease-mlops\mlruns/754890393248291025/models/m-908de7cc16d747449968d40c0d353832/artifacts
+creation_timestamp: 1767546882647
+experiment_id: '754890393248291025'
+last_updated_timestamp: 1767546892947
+model_id: m-908de7cc16d747449968d40c0d353832
+model_type: null
+name: logistic_regression_model
+source_run_id: 73c202d6bda64b0987efd626882a0ebb
+status: 2
+status_message: null
